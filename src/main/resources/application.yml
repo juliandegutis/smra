@@ -1,4 +1,4 @@
 xpto:
   service:
     orion:
-      url: http://localhost:1026/
+      url: http://192.168.0.147:1026/

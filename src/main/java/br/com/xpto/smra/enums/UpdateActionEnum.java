@@ -2,7 +2,7 @@ package br.com.xpto.smra.enums;
 
 public enum UpdateActionEnum {
 	
-	INSERT( "APPEND" );
+	APPEND( "APPEND" );
 	
 	private String value;
 	

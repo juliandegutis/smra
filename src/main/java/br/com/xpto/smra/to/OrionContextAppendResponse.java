@@ -1,7 +1,6 @@
 package br.com.xpto.smra.to;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,24 +16,19 @@ public class OrionContextAppendResponse implements Serializable {
 	 */
 	private static final long serialVersionUID = 3141554503922769377L;
 	
-	private List< ContextElement > contextElements;
+	private List< ContextResponse > contextResponses;
 	
 	private OrionContextAppendResponse() {
 		
 	}
-
 	
-	public List< ContextElement > getContextElements() {
-		if( contextElements != null ) {
-			return contextElements;
-		} else {
-			return new ArrayList< ContextElement >();
-		}
+	public List< ContextResponse > getContextResponses() {
+		return contextResponses;
 	}
 
 	
-	public void setContextElements( List< ContextElement > contextElements ) {
-		this.contextElements = contextElements;
+	public void setContextResponses( List< ContextResponse > contextResponses ) {
+		this.contextResponses = contextResponses;
 	}
 	
 }

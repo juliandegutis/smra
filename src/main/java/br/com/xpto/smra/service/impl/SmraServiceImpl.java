@@ -26,7 +26,7 @@ public class SmraServiceImpl implements SmraService {
 			
 			OrionContextAppendRequest request = ObjectConverter.appendEntity( localization );
 			
-			Call< OrionContextAppendResponse > call = orionContextServer.updateContext( request );
+			Call< OrionContextAppendResponse > call = orionContextServer.updateContext( "application/json", "application/json", request );
 			Response< OrionContextAppendResponse > response = call.execute();
 			
 			if( response.errorBody() == null ) {

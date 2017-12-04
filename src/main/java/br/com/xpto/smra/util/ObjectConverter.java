@@ -21,7 +21,7 @@ public class ObjectConverter {
 		
 		List< Attribute > attributes = new ArrayList< Attribute >();
 		
-		object.setUpdateAction( UpdateActionEnum.INSERT );
+		object.setUpdateAction( UpdateActionEnum.APPEND );
 		
 		contextElement.setId( localization.getSmraId() );
 		contextElement.setIsPattern( Constants.FALSE );
@@ -34,6 +34,8 @@ public class ObjectConverter {
 		attributes.add( longitude );
 		
 		contextElement.setAttributes( attributes );
+		
+		contextElements.add( contextElement );
 		
 		object.setContextElements( contextElements );
 		
