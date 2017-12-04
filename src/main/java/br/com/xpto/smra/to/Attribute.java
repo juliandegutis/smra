@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude( Include.NON_NULL )
 @JsonIgnoreProperties( ignoreUnknown = true )
 public class Attribute implements Serializable {
-
+	
+	public static String LATITUDE = "latitude";
+	public static String LONGITUDE = "longitude";
+	
 	/**
 	 * 
 	 */
