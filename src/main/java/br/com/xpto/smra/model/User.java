@@ -27,6 +27,9 @@ public class User implements Serializable {
 	@Column( name = "cd_login" )
 	private String login;
 	
+	@Column( name = "cd_email" ) 
+	private String email;
+	
 	@Column( name = "cd_password" )
 	private String password;
 	
@@ -98,5 +101,17 @@ public class User implements Serializable {
 	
 	public void setRegisterDate( Date registerDate ) {
 		this.registerDate = registerDate;
+	}
+
+
+	
+	public String getEmail() {
+		return email;
+	}
+
+
+	
+	public void setEmail( String email ) {
+		this.email = email;
 	}
 }

@@ -18,7 +18,7 @@ public class Smra implements Serializable {
 	private Long smraId;
 	
 	@Column( name = "cd_smra" )
-	private Long smraCode;
+	private String smraCode;
 
 	public Smra() {
 
@@ -32,11 +32,11 @@ public class Smra implements Serializable {
 		this.smraId = smraId;
 	}
 
-	public Long getSmraCode() {
+	public String getSmraCode() {
 		return smraCode;
 	}
 
-	public void setSmraCode( Long smraCode ) {
+	public void setSmraCode( String smraCode ) {
 		this.smraCode = smraCode;
 	}
 
