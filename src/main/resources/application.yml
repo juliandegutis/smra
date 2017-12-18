@@ -1,4 +1,0 @@
-xpto:
-  service:
-    orion:
-      url: http://192.168.0.147:1026/

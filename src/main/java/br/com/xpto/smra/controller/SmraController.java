@@ -1,17 +1,17 @@
 package br.com.xpto.smra.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.xpto.smra.service.SmraService;
 import br.com.xpto.smra.to.LocalizationTO;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
 
-@Controller
+@RestController
 @RequestMapping( value = "/smra" )
 public class SmraController {
 

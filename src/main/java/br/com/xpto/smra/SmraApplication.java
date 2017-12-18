@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
+import br.com.xpto.smra.rest.NotificationAPI;
 import br.com.xpto.smra.rest.OrionContextServer;
 import br.com.xpto.smra.util.NullOnEmptyConverterFactory;
 import okhttp3.OkHttpClient;
@@ -28,11 +29,20 @@ public class SmraApplication {
 	}
 	
 	@Bean( name = "orionContextServer" )
-	public OrionContextServer retrofitProject() {
+	public OrionContextServer orionContextServer() {
 
 		return new Retrofit.Builder().baseUrl( environment.getProperty( "xpto.service.orion.url" ) )
 			.addConverterFactory( new NullOnEmptyConverterFactory() )
 			.addConverterFactory( JacksonConverterFactory.create() ).client( okHttpClient ).build()
 			.create( OrionContextServer.class );
+	}
+	
+	@Bean( name = "notificationAPI" )
+	public NotificationAPI notificationAPI() {
+
+		return new Retrofit.Builder().baseUrl( environment.getProperty( "xpto.service.notification.url" ) )
+			.addConverterFactory( new NullOnEmptyConverterFactory() )
+			.addConverterFactory( JacksonConverterFactory.create() ).client( okHttpClient ).build()
+			.create( NotificationAPI.class );
 	}
 }

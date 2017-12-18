@@ -1,9 +1,14 @@
 package br.com.xpto.smra.service.impl;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.kyros.generics.GenericServiceImpl;
 import br.com.xpto.smra.exception.SmraException;
+import br.com.xpto.smra.model.Smra;
+import br.com.xpto.smra.repository.SmraRepository;
 import br.com.xpto.smra.rest.OrionContextServer;
 import br.com.xpto.smra.service.SmraService;
 import br.com.xpto.smra.to.LocalizationTO;
@@ -14,10 +19,15 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 @Service
-public class SmraServiceImpl implements SmraService {
+public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements SmraService {
 
 	@Autowired
 	private OrionContextServer orionContextServer;
+	
+	@Autowired
+	public SmraServiceImpl( SmraRepository repository, EntityManager entityManager ) {
+		super( repository, entityManager );
+	}
 	
 	@Override
 	public OrionContextAppendResponse updateContext( LocalizationTO localization ) {
