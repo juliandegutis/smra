@@ -12,6 +12,7 @@ import br.com.xpto.smra.service.SmraService;
 import br.com.xpto.smra.to.LocalizationTO;
 import br.com.xpto.smra.to.NotificationTO;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
+import br.com.xpto.smra.to.OrionContextQueryResponse;
 
 @RestController
 @RequestMapping( value = "/smra" )
@@ -24,7 +25,12 @@ public class SmraController {
 		this.smraService = smraService;
 	}
 	
-	@RequestMapping( value = "/", method = RequestMethod.POST )
+	@RequestMapping( path = { "", "/" }, method = RequestMethod.GET )
+	public OrionContextQueryResponse get( @RequestParam( value = "smraCode", required = true ) String smraCode ) {
+		return smraService.queryContext( smraCode );
+	}
+	
+	@RequestMapping( path = { "", "/" }, method = RequestMethod.POST )
 	public @ResponseBody OrionContextAppendResponse post( @RequestBody LocalizationTO localization ) {
 		return smraService.updateContext( localization );
 	}

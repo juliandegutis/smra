@@ -21,6 +21,8 @@ import br.com.xpto.smra.to.NotificationRequest;
 import br.com.xpto.smra.to.NotificationTO;
 import br.com.xpto.smra.to.OrionContextAppendRequest;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
+import br.com.xpto.smra.to.OrionContextQueryRequest;
+import br.com.xpto.smra.to.OrionContextQueryResponse;
 import br.com.xpto.smra.util.ObjectConverter;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -48,6 +50,29 @@ public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements
 		super( repository, entityManager );
 		this.repository = repository;
 	}
+	
+	@Override
+	public OrionContextQueryResponse queryContext( String smraCode ) {
+		
+		try {
+			
+			OrionContextQueryRequest request = ObjectConverter.queryContext( smraCode );
+			
+			Call< OrionContextQueryResponse > call = orionContextServer.queryContext( "application/json", "application/json", request );
+			Response< OrionContextQueryResponse > response = call.execute();
+			
+			if( response.errorBody() == null ) {
+				return response.body();
+			} else {
+				throw new SmraException( "Erro ao tentar consultar o serviço do Orion." );
+			}
+			
+		} catch( Exception ex ) {
+			throw new SmraException( ex.getMessage() );
+		}
+		
+	}
+
 	
 	@Override
 	public OrionContextAppendResponse updateContext( LocalizationTO localization ) {
@@ -84,6 +109,7 @@ public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements
 			notification.setUserId( user.getUserId() );
 			notification.setSmraCode( smra.getSmraCode() );
 			notification.setEmail( user.getEmail() );
+			notification.setUsername( user.getName() );
 			
 			return sendNotification( notification );
 			

@@ -7,10 +7,30 @@ import br.com.xpto.smra.enums.TypeEnum;
 import br.com.xpto.smra.enums.UpdateActionEnum;
 import br.com.xpto.smra.to.Attribute;
 import br.com.xpto.smra.to.ContextElement;
+import br.com.xpto.smra.to.Entity;
 import br.com.xpto.smra.to.LocalizationTO;
 import br.com.xpto.smra.to.OrionContextAppendRequest;
+import br.com.xpto.smra.to.OrionContextQueryRequest;
 
 public class ObjectConverter {
+	
+	public static OrionContextQueryRequest queryContext( String smraCode ) {
+		
+		OrionContextQueryRequest object = new OrionContextQueryRequest();
+		
+		List< Entity > entities = new ArrayList< Entity >();
+		Entity entity = new Entity();
+		
+		entity.setId( smraCode );
+		entity.setIsPattern( Constants.FALSE );
+		entity.setType( "SMRA" );
+		entities.add( entity );
+		
+		object.setEntities( entities );
+		
+		return object;
+		
+	}
 	
 	public static OrionContextAppendRequest appendEntity( LocalizationTO localization ) {
 		

@@ -16,19 +16,19 @@ public class OrionContextQueryResponse implements Serializable {
 	 */
 	private static final long serialVersionUID = 570138274973250150L;
 	
-	private List< ContextElement > contextElements;
+	private List< ContextResponse > contextResponses;
 	
 	public OrionContextQueryResponse() {
 		
 	}
 	
-	public List< ContextElement > getContextElements() {
-		return contextElements;
+	public List< ContextResponse > getContextResponses() {
+		return contextResponses;
 	}
 
 	
-	public void setContextElements( List< ContextElement > contextElements ) {
-		this.contextElements = contextElements;
+	public void setContextResponses( List< ContextResponse > contextResponses ) {
+		this.contextResponses = contextResponses;
 	}
 
 }

@@ -21,6 +21,10 @@ public class NotificationRequest implements Serializable {
 	
 	private String smraCode;
 	
+	private String username;
+	
+	private String body;
+	
 	public NotificationRequest() {
 		
 	}
@@ -53,6 +57,30 @@ public class NotificationRequest implements Serializable {
 	
 	public void setSmraCode( String smraCode ) {
 		this.smraCode = smraCode;
+	}
+
+
+	
+	public String getUsername() {
+		return username;
+	}
+
+
+	
+	public void setUsername( String username ) {
+		this.username = username;
+	}
+
+
+	
+	public String getBody() {
+		return body;
+	}
+
+
+	
+	public void setBody( String body ) {
+		this.body = body;
 	}
 	
 }

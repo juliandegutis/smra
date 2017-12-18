@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 
 public interface NotificationAPI {
 	
-	@POST( "notification/" )
+	@POST( "notification/send" )
 	Call< NotificationTO > sendEmailNotification(
 		@Body NotificationRequest notificationRequestBodyTO );
 	
