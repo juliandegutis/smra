@@ -40,4 +40,9 @@ public class SmraController {
 		return smraService.recieve( smraCode );
 	}
 	
+	@RequestMapping( value = "/placeID", method = RequestMethod.GET )
+	public String place( @RequestParam( value = "smraCode", required = true ) String smraCode ) {
+		
+	}
+	
 }

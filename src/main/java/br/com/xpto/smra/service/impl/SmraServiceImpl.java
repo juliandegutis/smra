@@ -52,6 +52,19 @@ public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements
 	}
 	
 	@Override
+	public String findPlace( String smraCode ) {
+		
+		try {
+			
+			return null;
+			
+		} catch( Exception ex ) {
+			throw new SmraException( ex.getMessage() );
+		}
+		
+	}
+	
+	@Override
 	public OrionContextQueryResponse queryContext( String smraCode ) {
 		
 		try {

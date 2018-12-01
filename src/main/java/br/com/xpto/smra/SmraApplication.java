@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
+import br.com.xpto.smra.rest.GoogleRestAPI;
 import br.com.xpto.smra.rest.NotificationAPI;
 import br.com.xpto.smra.rest.OrionContextServer;
 import br.com.xpto.smra.util.NullOnEmptyConverterFactory;
@@ -26,6 +27,14 @@ public class SmraApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SmraApplication.class, args);
+	}
+	
+	@Bean( name = "googleRestAPI" )
+	public GoogleRestAPI googleRestAPI() {
+		return new Retrofit.Builder().baseUrl( environment.getProperty( "xpto.service.google.url" ) )
+				.addConverterFactory( new NullOnEmptyConverterFactory() )
+				.addConverterFactory( JacksonConverterFactory.create() ).client( okHttpClient ).build()
+				.create( GoogleRestAPI.class );
 	}
 	
 	@Bean( name = "orionContextServer" )

@@ -15,4 +15,6 @@ public interface SmraService extends GenericService< Smra, Long > {
 	
 	NotificationTO recieve( String smraCode );
 	
+	String findPlace( String smraCode );
+	
 }
