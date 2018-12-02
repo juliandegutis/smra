@@ -42,10 +42,11 @@ public class UserContext {
 		this.authenticated = authenticated;
 	}
 	
-	public UserContext( String username, List< String > smraCodes, Boolean authenticated ) {
+	public UserContext( String username, List< String > smraCodes, Boolean authenticated, String email ) {
 		this.username = username;
 		this.smraCodes = smraCodes;
 		this.authenticated = authenticated;
+		this.email = email;
 		this.access_token = "AB2882H3S";
 	}
 

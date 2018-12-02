@@ -39,7 +39,7 @@ public class LoginServiceImpl implements LoginService  {
 			Smra smra = smraRepository.findOne( smraUser.getSmraId() );
 			smras.add( smra.getSmraCode() );
 		}
-		return new UserContext( user.getName(), smras, true );
+		return new UserContext( user.getName(), smras, true, user.getEmail() );
 	}
 
 

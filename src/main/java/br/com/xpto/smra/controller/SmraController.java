@@ -1,5 +1,7 @@
 package br.com.xpto.smra.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,8 @@ import br.com.xpto.smra.to.LocalizationTO;
 import br.com.xpto.smra.to.NotificationTO;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
 import br.com.xpto.smra.to.OrionContextQueryResponse;
+import br.com.xpto.smra.to.PlaceContext;
+import br.com.xpto.smra.to.SmraContext;
 import br.com.xpto.smra.to.UserContext;
 
 @RestController
@@ -41,9 +45,9 @@ public class SmraController {
 		return smraService.recieve( smraCode );
 	}
 	
-	@RequestMapping( value = "/placeID", method = RequestMethod.GET )
-	public String place( @RequestParam( value = "smraCode", required = true ) String smraCode ) {
-		return smraService.findPlace( smraCode );
+	@RequestMapping( value = "/tracking", method = RequestMethod.GET )
+	public List< PlaceContext > place( @RequestParam( value = "email", required = true ) String email ) {
+		return smraService.findPlace( email );
 	}
 	
 	@RequestMapping( value = "/register", method = RequestMethod.POST )
@@ -52,8 +56,8 @@ public class SmraController {
 	}
 	
 	@RequestMapping( value = "/register", method = RequestMethod.GET )
-	public Boolean find() {
-		 return null;
+	public List< SmraContext > find( @RequestParam( value = "email", required = true ) String email ) {
+		 return smraService.find(email);
 	}
 	
 }

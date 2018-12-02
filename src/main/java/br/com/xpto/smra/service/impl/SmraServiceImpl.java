@@ -1,5 +1,6 @@
 package br.com.xpto.smra.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,7 @@ import br.com.xpto.smra.model.Smra;
 import br.com.xpto.smra.model.SmraUser;
 import br.com.xpto.smra.model.User;
 import br.com.xpto.smra.repository.SmraRepository;
+import br.com.xpto.smra.repository.SmraUserRepository;
 import br.com.xpto.smra.repository.UserRepository;
 import br.com.xpto.smra.rest.GoogleRestAPI;
 import br.com.xpto.smra.rest.NotificationAPI;
@@ -28,7 +30,8 @@ import br.com.xpto.smra.to.OrionContextAppendRequest;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
 import br.com.xpto.smra.to.OrionContextQueryRequest;
 import br.com.xpto.smra.to.OrionContextQueryResponse;
-import br.com.xpto.smra.to.Place;
+import br.com.xpto.smra.to.PlaceContext;
+import br.com.xpto.smra.to.SmraContext;
 import br.com.xpto.smra.to.UserContext;
 import br.com.xpto.smra.util.ObjectConverter;
 import retrofit2.Call;
@@ -45,6 +48,9 @@ public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private SmraUserRepository smraUserRepository;
 	
 	@Autowired
 	private SmraUserService smraUserService;
@@ -68,16 +74,21 @@ public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements
 	}
 	
 	@Override
-	public String findPlace( String smraCode ) {
+	public List< PlaceContext > findPlace( String smraCode ) {
 		
 		try {
 			
-			Call< List< Place > > call = googleRestAPI.place("37.4224764,-122.0842499", environment.getProperty( "google.api.key" ) );
-			Response< List< Place > > response = call.execute();
+			List< PlaceContext > places = new ArrayList< PlaceContext >();
 			
-			System.out.println( response.body() );
+			PlaceContext place = new PlaceContext();
+			place.setLatitude( 37.4224764 );
+			place.setLongitude( -122.0842499 );
+			place.setSmraCode( "SMRA-0001" );
+			place.setDescription( "Casa" );
 			
-			return null;
+			places.add( place );
+			
+			return places;
 			
 		} catch( Exception ex ) {
 			throw new SmraException( ex.getMessage() );
@@ -194,6 +205,29 @@ public class SmraServiceImpl extends GenericServiceImpl< Smra, Long > implements
 		} catch( Exception ex ) {
 			throw new SmraException( ex.getMessage() );
 		}
+	}
+
+	@Override
+	public List<SmraContext> find(String email) {
+		
+		try {
+			
+			User user = userRepository.findByEmail(email);
+			List< SmraUser > smraUsers = smraUserRepository.findByUserId(user.getUserId());
+			
+			List< SmraContext > returnList = new ArrayList< SmraContext >();
+			
+			for( SmraUser smraUser : smraUsers ) {
+				Smra smra = repository.findOne( smraUser.getSmraId() );
+				returnList.add(new SmraContext( smra.getSmraCode(), smraUser.getDescription() ) );
+			}
+			
+			return returnList;
+			
+		} catch( Exception ex ) {
+			throw new SmraException( ex.getMessage() );
+		}
+		
 	}
 
 }
