@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ public class SmraUser implements Serializable {
 	
 	@Id
 	@Column( name = "id_usuario_smra" )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long smraUserId;
 	
 	@Column( name = "id_smra" )
@@ -25,6 +28,9 @@ public class SmraUser implements Serializable {
 	
 	@Column( name = "id_usuario" )
 	private Long userId;
+	
+	@Column( name = "cd_descricao" )
+	private String description;
 	
 	public SmraUser() {
 		
@@ -58,5 +64,15 @@ public class SmraUser implements Serializable {
 	
 	public void setUserId( Long userId ) {
 		this.userId = userId;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -6,6 +6,7 @@ import br.com.xpto.smra.to.LocalizationTO;
 import br.com.xpto.smra.to.NotificationTO;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
 import br.com.xpto.smra.to.OrionContextQueryResponse;
+import br.com.xpto.smra.to.UserContext;
 
 public interface SmraService extends GenericService< Smra, Long > {
 
@@ -16,5 +17,9 @@ public interface SmraService extends GenericService< Smra, Long > {
 	NotificationTO recieve( String smraCode );
 	
 	String findPlace( String smraCode );
+	
+	Boolean register( UserContext context );
+	
+	
 	
 }

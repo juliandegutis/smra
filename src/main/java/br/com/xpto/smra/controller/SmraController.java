@@ -13,6 +13,7 @@ import br.com.xpto.smra.to.LocalizationTO;
 import br.com.xpto.smra.to.NotificationTO;
 import br.com.xpto.smra.to.OrionContextAppendResponse;
 import br.com.xpto.smra.to.OrionContextQueryResponse;
+import br.com.xpto.smra.to.UserContext;
 
 @RestController
 @RequestMapping( value = "/smra" )
@@ -42,7 +43,17 @@ public class SmraController {
 	
 	@RequestMapping( value = "/placeID", method = RequestMethod.GET )
 	public String place( @RequestParam( value = "smraCode", required = true ) String smraCode ) {
-		
+		return smraService.findPlace( smraCode );
+	}
+	
+	@RequestMapping( value = "/register", method = RequestMethod.POST )
+	public Boolean register( @RequestBody UserContext context ) {
+		return smraService.register( context );
+	}
+	
+	@RequestMapping( value = "/register", method = RequestMethod.GET )
+	public Boolean find() {
+		 return null;
 	}
 	
 }

@@ -8,4 +8,8 @@ import br.com.xpto.smra.model.User;
 @Repository
 public interface UserRepository extends CrudRepository< User, Long > {
 
+	User findByEmailAndPassword( String email, String password );
+	
+	User findByEmail( String email );
+	
 }
